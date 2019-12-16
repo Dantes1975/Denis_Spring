@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Service" class="bean.Service">
+        <constructor-arg name="writer" ref="Writer"/>
+
+    </bean>
+
+    <bean id="Writer" class="bean.ConsoleWriter"/>
+
+
+    <bean id="greetingService" class="bean.GreetingService">
+        <property name="greetings" ref="greetingsList"/>
+    </bean>
+
+    <bean id="greetingsList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="greetingHello"/>
+                <ref bean="greetingHi"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="greetingHello" class="bean.GreetingHello">
+        <constructor-arg value="Hello"/>
+    </bean>
+
+    <bean id="greetingHi" class="bean.GreetingHi">
+        <constructor-arg value="Hi"/>
+    </bean>
+
+</beans>
